@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - EduHub</title>
+    <link rel="stylesheet" href="student-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Loading Dashboard...</p>
+    </div>
+
+    <!-- Main Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>EduHub</h1>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- User Profile -->
+            <div class="user-profile">
+                <div class="avatar">
+                    <img src="https://ui-avatars.com/api/?name=John+Doe&background=2563eb&color=fff" alt="Student Avatar" id="userAvatar">
+                    <span class="status online"></span>
+                </div>
+                <div class="user-info">
+                    <h3 id="userName">John Doe</h3>
+                    <p id="userEmail">john.doe@eduhub.com</p>
+                    <span class="badge student">Student</span>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-book-open"></i>
+                            <span>My Courses</span>
+                            <span class="badge notification">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Progress</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Assignments</span>
+                            <span class="badge notification">5</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-comments"></i>
+                            <span>Messages</span>
+                            <span class="badge notification">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li class="logout">
+                        <a href="student-login.html">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Study Time</h4>
+                        <p id="studyTime">12h 30m</p>
+                    </div>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-trophy"></i>
+                    <div>
+                        <h4>Rank</h4>
+                        <p id="userRank">#15</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search courses, assignments...">
+                </div>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge notification">4</span>
+                    </button>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="user-dropdown">
+                        <button class="user-menu">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=2563eb&color=fff" alt="User">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="#"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+                            <div class="divider"></div>
+                            <a href="student-login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Welcome Section -->
+                <section class="welcome-section">
+                    <div class="welcome-card">
+                        <div class="welcome-content">
+                            <h2>Welcome back, <span id="welcomeName">John</span>!</h2>
+                            <p>You have <strong>3 pending assignments</strong> and <strong>2 upcoming classes</strong> today.</p>
+                            <div class="welcome-actions">
+                                <button class="btn-primary">
+                                    <i class="fas fa-play-circle"></i>
+                                    Continue Learning
+                                </button>
+                                <button class="btn-secondary">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    View Schedule
+                                </button>
+                            </div>
+                        </div>
+                        <div class="welcome-image">
+                            <img src="https://cdn.pixabay.com/photo/2018/09/27/09/22/artificial-intelligence-3706562_1280.png" alt="Learning">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stats Overview -->
+                <section class="stats-overview">
+                    <h3>Overview</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Enrolled Courses</h4>
+                                <p class="stat-number" id="enrolledCourses">5</p>
+                            </div>
+                            <div class="stat-trend up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+2 this month</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Average Score</h4>
+                                <p class="stat-number" id="averageScore">87%</p>
+                            </div>
+                            <div class="stat-trend up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+5% from last month</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Study Hours</h4>
+                                <p class="stat-number" id="studyHours">42</p>
+                            </div>
+                            <div class="stat-trend up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+8h this week</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h4>Certificates</h4>
+                                <p class="stat-number" id="certificates">3</p>
+                            </div>
+                            <div class="stat-trend up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+1 recently</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Main Content Grid -->
+                <div class="content-grid">
+                    <!-- My Courses -->
+                    <section class="courses-section">
+                        <div class="section-header">
+                            <h3>My Courses</h3>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="courses-grid" id="coursesList">
+                            <!-- Courses will be loaded via JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Upcoming Assignments -->
+                    <section class="assignments-section">
+                        <div class="section-header">
+                            <h3>Upcoming Assignments</h3>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="assignments-list" id="assignmentsList">
+                            <!-- Assignments will be loaded via JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Today's Schedule -->
+                    <section class="schedule-section">
+                        <div class="section-header">
+                            <h3>Today's Schedule</h3>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="schedule-list" id="scheduleList">
+                            <!-- Schedule items will be loaded via JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Progress Chart -->
+                    <section class="progress-section">
+                        <div class="section-header">
+                            <h3>Learning Progress</h3>
+                            <div class="time-filter">
+                                <button class="filter-btn active">Week</button>
+                                <button class="filter-btn">Month</button>
+                                <button class="filter-btn">Year</button>
+                            </div>
+                        </div>
+                        <div class="progress-chart">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </section>
+
+                    <!-- Recent Activity -->
+                    <section class="activity-section">
+                        <div class="section-header">
+                            <h3>Recent Activity</h3>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="activity-list" id="activityList">
+                            <!-- Activities will be loaded via JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Quick Links -->
+                    <section class="links-section">
+                        <div class="section-header">
+                            <h3>Quick Links</h3>
+                        </div>
+                        <div class="links-grid">
+                            <a href="#" class="link-card">
+                                <i class="fas fa-video"></i>
+                                <span>Recorded Lectures</span>
+                            </a>
+                            <a href="#" class="link-card">
+                                <i class="fas fa-file-download"></i>
+                                <span>Study Materials</span>
+                            </a>
+                            <a href="#" class="link-card">
+                                <i class="fas fa-users"></i>
+                                <span>Study Groups</span>
+                            </a>
+                            <a href="#" class="link-card">
+                                <i class="fas fa-question-circle"></i>
+                                <span>Ask Questions</span>
+                            </a>
+                            <a href="#" class="link-card">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Performance</span>
+                            </a>
+                            <a href="#" class="link-card">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Attendance</span>
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="student-dashboard.js"></script>
+</body>
+</html>

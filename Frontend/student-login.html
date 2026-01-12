@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Login | Nexcore ERP</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  
+  <style>
+    /* Additional styles for professional login page */
+    .login-page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Back to Home Button - Professional */
+    .back-home-btn {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      z-index: 10;
+    }
+
+    .back-home-btn:hover {
+      background: white;
+      transform: translateX(-5px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-color: #2563eb;
+    }
+
+    .back-home-btn svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .back-home-btn:hover svg {
+      transform: translateX(-3px);
+    }
+
+    .login-box {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      animation: fadeInUp 0.6s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative corner */
+    .login-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      border-radius: 0 0 0 100px;
+      z-index: 0;
+    }
+
+    .login-box h2 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-box > p {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Google Login Button - Professional */
+    .social-btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+      margin-bottom: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.05);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .social-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .social-btn img, .social-btn svg {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .google-btn {
+      border-color: #d1d5db;
+      color: #3c4043;
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 30px 0;
+      color: #94a3b8;
+      font-size: 13px;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .divider span {
+      padding: 0 20px;
+      background: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Login Form */
+    .login-box form {
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 16px 50px 16px 16px;
+      border-radius: 10px;
+      border: 2px solid #e5e7eb;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: #f8fafc;
+    }
+
+    .login-box input:focus {
+      outline: none;
+      border-color: #2563eb;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    /* Password Toggle Button - Professional */
+    .password-toggle {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #64748b;
+      padding: 5px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .password-toggle:hover {
+      color: #2563eb;
+      background: rgba(37, 99, 235, 0.05);
+    }
+
+    .password-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Eye icon animations */
+    .eye-open {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.3s ease;
+    }
+
+    .eye-closed {
+      position: absolute;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.3s ease;
+    }
+
+    .password-toggle.show-password .eye-open {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .password-toggle.show-password .eye-closed {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Input Icons */
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      pointer-events: none;
+    }
+
+    .login-box .primary-btn {
+      width: 100%;
+      padding: 16px;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .login-box .primary-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .login-box .primary-btn:hover::before {
+      left: 100%;
+    }
+
+    .login-box .primary-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+
+    .login-box .primary-btn.loading {
+      background: #1e40af;
+      cursor: not-allowed;
+    }
+
+    .btn-text {
+      transition: opacity 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-loader {
+      display: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      position: absolute;
+      z-index: 1;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Form Links */
+    .form-links {
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .forgot-password {
+      font-size: 14px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 8px 12px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .forgot-password:hover {
+      color: #1e40af;
+      background: rgba(37, 99, 235, 0.05);
+      text-decoration: none;
+    }
+
+    .forgot-password svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Error Message */
+    .error-message {
+      color: #dc2626;
+      font-size: 13px;
+      margin-top: 15px;
+      text-align: left;
+      display: none;
+      padding: 12px;
+      background: #fee2e2;
+      border-radius: 8px;
+      border-left: 4px solid #dc2626;
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Demo Credentials */
+    .demo-credentials {
+      margin-top: 30px;
+      padding: 18px;
+      background: linear-gradient(135deg, #f1f5ff 0%, #e0e7ff 100%);
+      border-radius: 12px;
+      text-align: left;
+      font-size: 13px;
+      color: #475569;
+      border: 1px solid #c7d2fe;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.1); }
+      50% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+    }
+
+    .demo-credentials strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #0f172a;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-credentials strong svg {
+      width: 16px;
+      height: 16px;
+      color: #2563eb;
+    }
+
+    /* College Info */
+    .college-info {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .college-info a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .college-info a:hover {
+      color: #1e40af;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .login-box {
+        padding: 30px 25px;
+        margin: 0 15px;
+      }
+      
+      .back-home-btn {
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 13px;
+      }
+      
+      .login-box h2 {
+        font-size: 24px;
+      }
+      
+      .form-links {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-page {
+        padding: 15px;
+      }
+      
+      .login-box {
+        padding: 25px 20px;
+        border-radius: 16px;
+      }
+      
+      .back-home-btn {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 20px;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="login-page">
+    <!-- Back to Home Button -->
+    <a href="index.html" class="back-home-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path fill-rule="evenodd" d="M11.03 3.97a.75.75 0 010 1.06l-6.22 6.22H21a.75.75 0 010 1.5H4.81l6.22 6.22a.75.75 0 11-1.06 1.06l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 0z" clip-rule="evenodd" />
+      </svg>
+      Back to Homepage
+    </a>
+
+    <div class="login-box">
+      <h2>Student Login</h2>
+      <p>Access your College ERP Dashboard</p>
+
+      <!-- Google Login -->
+      <button class="social-btn google-btn" id="googleLogin">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        Continue with Google
+      </button>
+      <p style="font-size:13px;color:#64748b;margin-top:8px;margin-bottom:5px;">
+        Use your college issued email ID
+      </p>
+
+      <div class="divider">
+        <span>OR</span>
+      </div>
+
+      <!-- PRN Login Form -->
+      <form id="loginForm">
+        <div class="input-group">
+          <div class="input-icon">
+            
+          </div>
+          <input type="text" placeholder="Enter PRN Number" id="prn" required>
+        </div>
+
+        <div class="input-group">
+          <div class="input-icon">
+            
+          </div>
+          <input type="password" placeholder="Enter Password" id="password" required>
+          <button type="button" class="password-toggle" id="passwordToggle">
+            <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 15a3 3 0 100-6 3 3 0 000 6z" />
+              <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" clip-rule="evenodd" />
+            </svg>
+            <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" d="M3.53 2.47a.75.75 0 00-1.06 1.06l18 18a.75.75 0 101.06-1.06l-18-18zM22.676 12.553a11.249 11.249 0 01-2.631 4.31l-3.099-3.099a5.25 5.25 0 00-6.71-6.71L7.759 4.577a11.217 11.217 0 014.242-.827c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113z" clip-rule="evenodd" />
+              <path fill-rule="evenodd" d="M15.75 12c0 .18-.013.357-.037.53l-4.244-4.243A3.75 3.75 0 0115.75 12zM12.53 15.713l-4.243-4.244a3.75 3.75 0 004.243 4.243z" clip-rule="evenodd" />
+              <path fill-rule="evenodd" d="M6.75 12c0-.619.107-1.213.304-1.764l-3.1-3.1a11.25 11.25 0 00-2.63 4.31c-.12.362-.12.752 0 1.114 1.489 4.491 5.708 7.728 10.676 7.728 1.614 0 3.162-.33 4.578-.933l-2.78-2.78a5.25 5.25 0 01-6.925-6.925l-3.1-3.1a11.217 11.217 0 00-2.923 5.022 9.742 9.742 0 01-.796-.72 3.756 3.756 0 01-.129-1.202V12c0-.619.107-1.213.304-1.764l3.1 3.1a5.25 5.25 0 017.232 7.232l3.1 3.1a11.25 11.25 0 002.63-4.31c.12-.362.12-.752 0-1.114-1.489-4.491-5.708-7.728-10.676-7.728-1.614 0-3.162.33-4.578.933l2.78 2.78A5.25 5.25 0 016.75 12z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+        
+        <button type="submit" class="primary-btn" id="loginBtn">
+          <span class="btn-text" id="btnText">Login to Dashboard</span>
+          <div class="btn-loader" id="btnLoader"></div>
+        </button>
+      </form>
+
+      <!-- Error Message -->
+      <div class="error-message" id="errorMessage">
+        Invalid credentials. Please try again.
+      </div>
+
+      <!-- Form Links -->
+      <div class="form-links">
+        <a href="#" class="forgot-password" id="forgotPassword">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 16v-4M12 8h.01"></path>
+          </svg>
+          Forgot Password?
+        </a>
+      </div>
+      <!-- College Info -->
+      <div class="college-info">
+        Having trouble logging in? Contact your college administrator at 
+        <a href="mailto:support@nexcore.edu">support@nexcore.edu</a> or call +917709940409
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // DOM Elements
+    const loginForm = document.getElementById('loginForm');
+    const loginBtn = document.getElementById('loginBtn');
+    const btnText = document.getElementById('btnText');
+    const btnLoader = document.getElementById('btnLoader');
+    const errorMessage = document.getElementById('errorMessage');
+    const googleLogin = document.getElementById('googleLogin');
+    const forgotPassword = document.getElementById('forgotPassword');
+    const passwordToggle = document.getElementById('passwordToggle');
+    const passwordInput = document.getElementById('password');
+
+    // Demo credentials for testing
+    const demoCredentials = {
+      '20230123456': 'password123',
+      'test': 'test'
+    };
+
+    // Password toggle functionality
+    passwordToggle.addEventListener('click', function() {
+      this.classList.toggle('show-password');
+      const isPassword = passwordInput.type === 'password';
+      passwordInput.type = isPassword ? 'text' : 'password';
+      
+      // Add animation class for click effect
+      this.style.transform = 'translateY(-50%) scale(0.9)';
+      setTimeout(() => {
+        this.style.transform = 'translateY(-50%) scale(1)';
+      }, 150);
+    });
+
+    // Login form submission
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const prn = document.getElementById('prn').value.trim();
+      const password = document.getElementById('password').value;
+      
+      // Validation
+      if (!prn || !password) {
+        showError('Please enter both PRN and password');
+        return;
+      }
+      
+      // Show loading state
+      setLoading(true);
+      hideError();
+      
+      // Simulate API call delay
+      setTimeout(() => {
+        // Check credentials (Replace with actual API call)
+        if (demoCredentials[prn] && demoCredentials[prn] === password) {
+          // Success - Store login status
+          sessionStorage.setItem('isLoggedIn', 'true');
+          sessionStorage.setItem('studentName', 'Piyush');
+          sessionStorage.setItem('studentPRN', prn);
+          
+          // Show success animation
+          loginBtn.style.background = 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)';
+          btnText.textContent = 'Login Successful!';
+          
+          // Redirect to dashboard after delay
+          setTimeout(() => {
+            window.location.href = 'student-dashboard.html';
+          }, 800);
+          
+        } else {
+          // Failure
+          setLoading(false);
+          showError('Invalid PRN or password. Please use demo credentials above.');
+          
+          // Shake animation for error
+          loginForm.style.animation = 'shake 0.5s';
+          setTimeout(() => {
+            loginForm.style.animation = '';
+          }, 500);
+        }
+      }, 1000); // Simulated API delay
+    });
+
+    // Google login button
+    googleLogin.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.style.background = 'linear-gradient(135deg, #4285F4 0%, #34A853 100%)';
+      this.style.color = 'white';
+      
+      setTimeout(() => {
+        this.style.background = '';
+        this.style.color = '';
+        alert('Google login will be available soon with college email integration.');
+      }, 300);
+    });
+
+    // Forgot password
+    forgotPassword.addEventListener('click', function(e) {
+      e.preventDefault();
+      const prn = document.getElementById('prn').value.trim();
+      
+      // Add click animation
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        this.style.transform = '';
+      }, 200);
+      
+      if (prn) {
+        alert('Password reset instructions sent to your registered email for PRN: ' + prn);
+      } else {
+        alert('Please enter your PRN first to reset password.');
+        document.getElementById('prn').focus();
+      }
+    });
+
+    // Helper functions
+    function setLoading(isLoading) {
+      if (isLoading) {
+        loginBtn.classList.add('loading');
+        loginBtn.disabled = true;
+        btnText.style.opacity = '0';
+        btnLoader.style.display = 'block';
+      } else {
+        loginBtn.classList.remove('loading');
+        loginBtn.disabled = false;
+        btnText.style.opacity = '1';
+        btnLoader.style.display = 'none';
+      }
+    }
+
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.style.display = 'block';
+    }
+
+    function hideError() {
+      errorMessage.style.display = 'none';
+    }
+
+    // Auto-fill demo credentials on page load
+    window.onload = function() {
+      document.getElementById('prn').value = '20230123456';
+      document.getElementById('password').value = 'password123';
+      
+      // Add shake animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+      `;
+      document.head.appendChild(style);
+    };
+
+    // Focus on PRN field when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('prn').focus();
+      
+      // Add floating animation to back button
+      const backBtn = document.querySelector('.back-home-btn');
+      setInterval(() => {
+        backBtn.style.transform = 'translateX(-8px)';
+        setTimeout(() => {
+          backBtn.style.transform = 'translateX(-5px)';
+        }, 300);
+      }, 3000);
+    });
+
+    // Enter key to submit form
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && !loginBtn.disabled) {
+        loginForm.dispatchEvent(new Event('submit'));
+      }
+    });
+  </script>
+  
+</body>
+</html>

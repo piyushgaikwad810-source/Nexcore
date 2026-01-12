@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | NEXCORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin-login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Admin Login Container -->
+    <div class="admin-login-container">
+        <!-- Left Panel -->
+        <div class="admin-left-panel">
+            <div class="admin-logo-section">
+                <a href="index.html" class="back-to-home">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Home</span>
+                </a>
+                
+                <div class="admin-brand">
+                    <div class="admin-logo">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h1>NEXCORE</h1>
+                    <p class="admin-subtitle">Administration Panel</p>
+                </div>
+            </div>
+
+            <div class="admin-info-section">
+                <div class="security-status">
+                    <h3><i class="fas fa-shield-alt"></i> Secure Portal</h3>
+                    <ul class="security-features">
+                        <li><i class="fas fa-check-circle"></i> 256-bit SSL Encryption</li>
+                        <li><i class="fas fa-check-circle"></i> Multi-factor Authentication</li>
+                        <li><i class="fas fa-check-circle"></i> Activity Monitoring</li>
+                        <li><i class="fas fa-check-circle"></i> Real-time Alerts</li>
+                    </ul>
+                </div>
+
+                <div class="demo-credentials">
+                    <h4><i class="fas fa-key"></i> Test Credentials</h4>
+                    <div class="credentials">
+                        <div class="credential-item">
+                            <label>Email:</label>
+                            <code>admin@nexcore.com</code>
+                        </div>
+                        <div class="credential-item">
+                            <label>Password:</label>
+                            <code>admin123</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="admin-right-panel">
+            <div class="login-form-container">
+                <div class="form-header">
+                    <h2>Admin Login</h2>
+                    <p>Access the administration dashboard</p>
+                </div>
+
+                <form id="adminLoginForm" class="admin-login-form">
+                    <div class="form-group">
+                        <label for="adminEmail">
+                            <i class="fas fa-envelope"></i>
+                            Admin Email
+                        </label>
+                        <input type="email" 
+                               id="adminEmail" 
+                               placeholder="Enter admin email"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adminPassword">
+                            <i class="fas fa-lock"></i>
+                            Password
+                        </label>
+                        <div class="password-input">
+                            <input type="password" 
+                                   id="adminPassword" 
+                                   placeholder="Enter password"
+                                   required>
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="remember-me">
+                            <input type="checkbox" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="login-button" id="loginButton">
+                        <span class="button-text">Login to Dashboard</span>
+                        <div class="button-loader">
+                            <div class="loader"></div>
+                        </div>
+                    </button>
+
+                    <div class="security-info">
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Auto logout: 15 min</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-history"></i>
+                            <span>Last login: Just now</span>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <p>Need assistance? <a href="#">Contact Administrator</a></p>
+                        <p class="version">System v2.4.1</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('adminLoginForm');
+            const toggleBtn = document.getElementById('togglePassword');
+            const passwordField = document.getElementById('adminPassword');
+            const loginBtn = document.getElementById('loginButton');
+            
+            // Toggle password visibility
+            toggleBtn.addEventListener('click', function() {
+                const type = passwordField.type === 'password' ? 'text' : 'password';
+                passwordField.type = type;
+                
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
+            
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('adminEmail').value.trim();
+                const password = document.getElementById('adminPassword').value.trim();
+                
+                // Show loading
+                loginBtn.classList.add('loading');
+                
+                setTimeout(() => {
+                    // Check credentials
+                    if ((email === 'admin@nexcore.com' && password === 'admin123') ||
+                        (email === 'admin' && password === 'admin')) {
+                        
+                        // Simulate successful login
+                        loginBtn.classList.remove('loading');
+                        loginBtn.classList.add('success');
+                        loginBtn.querySelector('.button-text').textContent = 'Redirecting...';
+                        
+                        // Redirect to admin dashboard
+                        setTimeout(() => {
+                            window.location.href = 'admin-dashboard.html';
+                        }, 1000);
+                        
+                    } else {
+                        // Show error
+                        loginBtn.classList.remove('loading');
+                        alert('Invalid credentials. Please try again.');
+                    }
+                }, 1500);
+            });
+            
+            // Auto-focus email field
+            document.getElementById('adminEmail').focus();
+            
+            // Demo credentials click to fill
+            document.querySelectorAll('code').forEach(code => {
+                code.addEventListener('click', function() {
+                    const text = this.textContent;
+                    if (text.includes('@')) {
+                        document.getElementById('adminEmail').value = text;
+                        document.getElementById('adminPassword').focus();
+                    } else {
+                        document.getElementById('adminPassword').value = text;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

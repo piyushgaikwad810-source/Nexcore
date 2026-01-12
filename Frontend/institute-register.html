@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institute Registration | NEXCORE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="institute-register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Processing...</div>
+    </div>
+
+    <!-- Registration Container -->
+    <div class="register-container">
+        <!-- Left Side - Benefits -->
+        <div class="register-left">
+            <div class="left-content">
+                <a href="index.html" class="back-home">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Home</span>
+                </a>
+
+                <div class="left-header">
+                    <div class="logo">
+                        <i class="fas fa-university"></i>
+                        <h1>NEXCORE</h1>
+                    </div>
+                    <h2>Institute Registration</h2>
+                    <p>Join 500+ educational institutions using NEXCORE</p>
+                </div>
+
+                <div class="benefits">
+                    <h3><i class="fas fa-star"></i> Why Choose NEXCORE?</h3>
+                    <div class="benefit-list">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Quick Setup</h4>
+                                <p>Get your institution live within 24 hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Secure Platform</h4>
+                                <p>Enterprise-grade security & data protection</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>24/7 Support</h4>
+                                <p>Dedicated support team for your institution</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h4>Advanced Analytics</h4>
+                                <p>Comprehensive reports and insights</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-info">
+                    <h4><i class="fas fa-tag"></i> Flexible Pricing</h4>
+                    <div class="pricing-cards">
+                        <div class="pricing-card">
+                            <h5>Basic</h5>
+                            <div class="price">Free<span><span></div>
+                            <p>Up to 1000 students</p>
+                        </div>
+                        <div class="pricing-card popular">
+                            <span class="popular-badge">Most Popular</span>
+                            <h5>Professional</h5>
+                            <div class="price">₹25,000<span>/year</span></div>
+                            <p>Up to 3,000 students</p>
+                        </div>
+                        <div class="pricing-card">
+                            <h5>Enterprise</h5>
+                            <div class="price">₹45,000<span>/year</span></div>
+                            <p>Unlimited students</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Institutions</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Students</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Registration Form -->
+        <div class="register-right">
+            <div class="right-content">
+                <div class="form-header">
+                    <h3>Register Your Institution</h3>
+                    <p>Fill the form below to get started</p>
+                </div>
+
+                <form id="instituteForm" class="registration-form">
+                    <!-- Step 1: Basic Information -->
+                    <div class="form-step active" id="step1">
+                        <div class="step-header">
+                            <span class="step-number">1</span>
+                            <h4>Basic Information</h4>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instituteName">
+                                <i class="fas fa-university"></i>
+                                Institution Name *
+                            </label>
+                            <input type="text" 
+                                   id="instituteName" 
+                                   placeholder="e.g., ABC College of Engineering"
+                                   required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="instituteType">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    Institution Type *
+                                </label>
+                                <select id="instituteType" required>
+                                    <option value="">Select type</option>
+                                    <option value="school">School</option>
+                                    <option value="college">College</option>
+                                    <option value="university">University</option>
+                                    <option value="coaching">Coaching Institute</option>
+                                    <option value="training">Training Center</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="establishmentYear">
+                                    <i class="fas fa-calendar"></i>
+                                    Establishment Year *
+                                </label>
+                                <input type="number" 
+                                       id="establishmentYear" 
+                                       min="1900" 
+                                       max="2024"
+                                       placeholder="e.g., 2005"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Full Address *
+                            </label>
+                            <textarea id="address" 
+                                      rows="3" 
+                                      placeholder="Complete postal address of your institution"
+                                      required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">
+                                    <i class="fas fa-city"></i>
+                                    City *
+                                </label>
+                                <input type="text" 
+                                       id="city" 
+                                       placeholder="City"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="state">
+                                    <i class="fas fa-map"></i>
+                                    State *
+                                </label>
+                                <input type="text" 
+                                       id="state" 
+                                       placeholder="State"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pincode">
+                                    <i class="fas fa-mail-bulk"></i>
+                                    Pincode *
+                                </label>
+                                <input type="text" 
+                                       id="pincode" 
+                                       placeholder="Pincode"
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Contact Information -->
+                    <div class="form-step" id="step2">
+                        <div class="step-header">
+                            <span class="step-number">2</span>
+                            <h4>Contact Information</h4>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPerson">
+                                <i class="fas fa-user-tie"></i>
+                                Contact Person Name *
+                            </label>
+                            <input type="text" 
+                                   id="contactPerson" 
+                                   placeholder="Full name of contact person"
+                                   required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="designation">
+                                    <i class="fas fa-briefcase"></i>
+                                    Designation *
+                                </label>
+                                <input type="text" 
+                                       id="designation" 
+                                       placeholder="e.g., Principal, Director"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="department">
+                                    <i class="fas fa-building"></i>
+                                    Department *
+                                </label>
+                                <input type="text" 
+                                       id="department" 
+                                       placeholder="e.g., Administration"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="officialEmail">
+                                <i class="fas fa-envelope"></i>
+                                Official Email *
+                            </label>
+                            <input type="email" 
+                                   id="officialEmail" 
+                                   placeholder="institute@domain.com"
+                                   required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">
+                                    <i class="fas fa-phone"></i>
+                                    Phone Number *
+                                </label>
+                                <input type="tel" 
+                                       id="phone" 
+                                       placeholder="+91 XXXXXXXXXX"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="alternatePhone">
+                                    <i class="fas fa-phone-alt"></i>
+                                    Alternate Phone
+                                </label>
+                                <input type="tel" 
+                                       id="alternatePhone" 
+                                       placeholder="Optional">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="website">
+                                <i class="fas fa-globe"></i>
+                                Website
+                            </label>
+                            <input type="url" 
+                                   id="website" 
+                                   placeholder="https://www.example.com">
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Institution Details -->
+                    <div class="form-step" id="step3">
+                        <div class="step-header">
+                            <span class="step-number">3</span>
+                            <h4>Institution Details</h4>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="totalStudents">
+                                    <i class="fas fa-users"></i>
+                                    Total Students *
+                                </label>
+                                <input type="number" 
+                                       id="totalStudents" 
+                                       min="1"
+                                       placeholder="Approximate number"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="totalFaculty">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    Total Faculty *
+                                </label>
+                                <input type="number" 
+                                       id="totalFaculty" 
+                                       min="1"
+                                       placeholder="Approximate number"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="courses">
+                                <i class="fas fa-book"></i>
+                                Courses Offered *
+                            </label>
+                            <textarea id="courses" 
+                                      rows="3" 
+                                      placeholder="List major courses/programs offered (comma separated)"
+                                      required></textarea>
+                            <small class="hint">Example: B.Tech Computer Science, MBA, BBA, B.Com</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accreditation">
+                                <i class="fas fa-award"></i>
+                                Accreditations
+                            </label>
+                            <textarea id="accreditation" 
+                                      rows="2" 
+                                      placeholder="e.g., NAAC, AICTE, UGC, ISO"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hearAbout">
+                                <i class="fas fa-bullhorn"></i>
+                                How did you hear about us?
+                            </label>
+                            <select id="hearAbout">
+                                <option value="">Select option</option>
+                                <option value="search">Search Engine</option>
+                                <option value="social">Social Media</option>
+                                <option value="reference">Reference</option>
+                                <option value="advertisement">Advertisement</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Account Setup -->
+                    <div class="form-step" id="step4">
+                        <div class="step-header">
+                            <span class="step-number">4</span>
+                            <h4>Account Setup</h4>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminEmail">
+                                <i class="fas fa-user-shield"></i>
+                                Admin Email *
+                            </label>
+                            <input type="email" 
+                                   id="adminEmail" 
+                                   placeholder="admin@institute.com"
+                                   required>
+                            <small class="hint">This will be your login email</small>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">
+                                    <i class="fas fa-lock"></i>
+                                    Password *
+                                </label>
+                                <div class="password-input">
+                                    <input type="password" 
+                                           id="password" 
+                                           placeholder="Create password"
+                                           required>
+                                    <button type="button" class="toggle-password">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <small class="hint">Minimum 8 characters with letters & numbers</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">
+                                    <i class="fas fa-lock"></i>
+                                    Confirm Password *
+                                </label>
+                                <div class="password-input">
+                                    <input type="password" 
+                                           id="confirmPassword" 
+                                           placeholder="Confirm password"
+                                           required>
+                                    <button type="button" class="toggle-password">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox">
+                                <input type="checkbox" id="terms" required>
+                                <span class="checkmark"></span>
+                                I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> *
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox">
+                                <input type="checkbox" id="newsletter">
+                                <span class="checkmark"></span>
+                                Subscribe to our newsletter for updates & tips
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Form Navigation -->
+                    <div class="form-navigation">
+                        <button type="button" class="btn-prev" id="prevBtn">
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        
+                        <div class="step-indicators">
+                            <span class="step-dot active" data-step="1"></span>
+                            <span class="step-dot" data-step="2"></span>
+                            <span class="step-dot" data-step="3"></span>
+                            <span class="step-dot" data-step="4"></span>
+                        </div>
+                        
+                        <button type="button" class="btn-next" id="nextBtn">
+                            Next
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        
+                        <button type="submit" class="btn-submit" id="submitBtn" style="display: none;">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Registration
+                        </button>
+                    </div>
+                </form>
+
+                <div class="form-footer">
+                    <p>Already have an account? <a href="institute-login.html">Login here</a></p>
+                    <p>Need help? <a href="contact.html">Contact our sales team</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Registration Successful!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Thank you for registering your institution with NEXCORE.</p>
+                <div class="next-steps">
+                    <h4>Next Steps:</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> Check your email for verification</li>
+                        <li><i class="fas fa-calendar-check"></i> Schedule onboarding call</li>
+                        <li><i class="fas fa-cog"></i> Set up your institution portal</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-dashboard" id="goToDashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Go to Dashboard
+                </button>
+                <button class="btn-close" id="closeModal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="institute-register.js"></script>
+</body>
+</html>
